@@ -27,14 +27,13 @@ def binary_search(arr, x):
         elif arr[mid] > x:
             high = mid - 1
         else:
-            return iterations, arr[mid]
+            return iterations, arr[mid] if x != arr[high] else None
 
-    # Якщо елемент не знайдений
-    return (iterations, arr[high] if arr[high] >= x else None)
+    # return iterations, None if high >= len(arr) else arr[high] if x == arr[high] else arr[high - 1]
+    return iterations, arr[mid] if x != arr[high] else arr[high - 1]
 
 # Приклад використання
 arr = [0.1, 0.52, 1.0, 2.2, 3.14, 4.56, 7.89, 8.31, 9.07, 11.77]
-
 
 while True:
     # Введення значення для пошуку
@@ -44,10 +43,10 @@ while True:
     if x.lower() == "exit":
         break
     else:
-       
+
         # Перевірка, чи введено число
         try:
-            # Перетворення введенного значення в float
+            # Перетворення введеного значення в float
             x = float(x)
         except ValueError:
             print("Введено невірне значення. Спробуйте ще раз.")
